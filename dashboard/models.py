@@ -1,10 +1,32 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
 
 # Create your models here.
 class User(AbstractUser):
-    pass
+    ROLE_CHOICES = [
+        ('employee', 'Employee'),
+        ('hr_manager', 'HR Manager'),
+        ('department_manager', 'Department Manager'),
+        ('executive_manager', 'Executive Manager'),
+    ]
+
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='employee')
+    groups = models.ManyToManyField(
+        Group,
+        related_name='user_set',
+        blank=True,
+        verbose_name='groups'
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='user_ser',
+        blank=True,
+        verbose_name='user permissions',
+    )
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class Employee(models.Model):
