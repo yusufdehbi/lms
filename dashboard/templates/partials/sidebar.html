@@ -61,14 +61,14 @@
                         </li>
                     </ul>
                 </li>   
-                <li class="nav-main-item {% if request.path == '/employees/' %}open{% endif %}">
-                    <a class="nav-main-link nav-main-link-submenu {% if request.path == '/employees/' %} active {% endif %}" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                <li class="nav-main-item {% if request.path == '/employees/' or request.path == '/add_employee/' %}open{% endif %}">
+                    <a class="nav-main-link nav-main-link-submenu {% if request.path == '/employees/' or request.path == '/add_employee/' %} active {% endif %}" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="nav-main-link-icon fa fa-users"></i>
                         <span class="nav-main-link-name ">Employees</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="javascript:void(0)"><span class="nav-main-link-name">Add</span></a>
+                            <a class="nav-main-link" href="{% url 'add_employee' %}"><span class="nav-main-link-name">Add</span></a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="{% url 'employees' %}"><span class="nav-main-link-name">Manage</span></a>
