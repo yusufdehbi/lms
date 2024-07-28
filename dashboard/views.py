@@ -14,3 +14,7 @@ def employees(request):
     page_number = request.GET.get('page')
     page_employees = paginator.get_page(page_number)
     return render(request, 'employees.html', {'employees': page_employees})
+
+
+def add_employee(request):
+    return render(request, 'add_employee.html')

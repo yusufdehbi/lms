@@ -30,11 +30,19 @@ class User(AbstractUser):
 
 
 class Employee(models.Model):
+    MALE = 'male'
+    FEMALE = 'female'
+    GENDER_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female')
+    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     employee_id = models.CharField(max_length=100, unique=True)
     department = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     date_joined = models.DateField()
+    gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} - {self.employee_id}"
