@@ -50,10 +50,13 @@ class LeaveType(models.Model):
 
 
 class LeaveRequest(models.Model):
+    PENDING = 'pending'
+    APPROVED = 'approved'
+    REJECTED = 'rejected'
     STATUS_CHOICES = [
-        ('P', 'Pending'),
-        ('A', 'Approved'),
-        ('R', 'Rejected'),
+        (PENDING, 'Pending'),
+        (APPROVED, 'Approved'),
+        (REJECTED, 'Rejected'),
     ]
 
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
