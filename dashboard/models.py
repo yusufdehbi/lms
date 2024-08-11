@@ -29,6 +29,20 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
 
+class Department(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Position(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Employee(models.Model):
     MALE = 'male'
     FEMALE = 'female'
@@ -39,8 +53,8 @@ class Employee(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     employee_id = models.CharField(max_length=100, unique=True)
-    department = models.CharField(max_length=100)
-    position = models.CharField(max_length=100)
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True)
+    position = models.ForeignKey(Position, on_delete=models.PROTECT)
     date_joined = models.DateField()
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
 
