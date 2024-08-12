@@ -26,15 +26,16 @@
 
         <!-- Page Content -->
         <div class="content">
-            <!-- Personal Info -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Personal Informations</h3>
-                </div>
-                <div class="block-content">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-lg-8">
-                            <form method="POST">
+            <form method="POST">
+
+                <!-- Personal Info -->
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Personal Information</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-8">
                                 {#                                <div class="mb-4">#}
                                 {#                                    <label class="form-label" for="employee-id">Employee ID</label>#}
                                 {#                                    <span class="text-danger">*</span>#}
@@ -90,22 +91,20 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Personal Info -->
+                <!-- Personal Info -->
 
-            <!-- Personal Info -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Personal Informations</h3>
-                </div>
-                <div class="block-content">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-lg-8">
-                            <form method="POST">
+                <!-- Personal Info -->
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Word Information</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-8">
                                 {#                                <div class="mb-4">#}
                                 {#                                    <label class="form-label" for="employee-id">Employee ID</label>#}
                                 {#                                    <span class="text-danger">*</span>#}
@@ -125,63 +124,31 @@
                                     <label class="form-label" for="department">Department</label>
                                     <select class="js-select2 form-select" id="department" data-placeholder="Choose one..">
                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        <option value="1">HTML</option>
-                                        <option value="2">CSS</option>
-                                        <option value="3">JavaScript</option>
-                                        <option value="4">PHP</option>
-                                        <option value="5">MySQL</option>
-                                        <option value="6">Ruby</option>
-                                        <option value="7">Angular</option>
-                                        <option value="8">React</option>
-                                        <option value="9">Vue.js</option>
+                                        {% for department in departments %}
+                                            <option value="{{ department.id }}">{{ department.name }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="position">Position</label>
+                                    <select class="js-select2 form-select" id="position" data-placeholder="Choose one..">
+                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                        {% for position in positions %}
+                                            <option value="{{ position.id }}">{{ position.name }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="example-flatpickr-default">Date de naissance</label>
                                     <input type="text" class="js-flatpickr form-control" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="email">Email</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Gender</label>
-                                    <div class="space-x-2">
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    id="radio-male"
-                                                    name="radio-gender"
-                                                    value="male"
-                                                    checked
-                                            />
-                                            <label
-                                                    class="form-check-label"
-                                                    for="radio-male"
-                                            >Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    id="radio-female"
-                                                    name="radio-gender"
-                                                    value="female"
-                                            />
-                                            <label
-                                                    class="form-check-label"
-                                                    for="radio-female"
-                                            >Female</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Personal Info -->
+                <!-- Personal Info -->
+            </form>
         </div>
         <!-- END Page Content -->
     </main>

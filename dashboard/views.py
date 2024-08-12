@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from .models import Employee
+from .models import Employee, Department, Position
 from django.core.paginator import Paginator
-
 
 # Create your views here.
 def home(request):
@@ -17,4 +16,9 @@ def employees(request):
 
 
 def add_employee(request):
-    return render(request, 'add_employee.html')
+    departments = Department.objects.all()
+    positions = Position.objects.all()
+    return render(request, 'add_employee.html', {
+        'departments': departments,
+        'positions': positions,
+    })
