@@ -10,7 +10,17 @@ class User(AbstractUser):
         ('department_manager', 'Department Manager'),
         ('executive_manager', 'Executive Manager'),
     ]
+
+    MALE = 'male'
+    FEMALE = 'female'
+    GENDER_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female')
+    ]
+
+    gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
     birthday = models.DateField(null=True, blank=True)
+
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='employee')
     groups = models.ManyToManyField(
         Group,
@@ -44,19 +54,11 @@ class Position(models.Model):
 
 
 class Employee(models.Model):
-    MALE = 'male'
-    FEMALE = 'female'
-    GENDER_CHOICES = [
-        (MALE, 'Male'),
-        (FEMALE, 'Female')
-    ]
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     employee_id = models.CharField(max_length=100, unique=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)
     date_joined = models.DateField()
-    gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} - {self.employee_id}"
