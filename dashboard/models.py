@@ -4,11 +4,15 @@ from django.db import models
 
 # Create your models here.
 class User(AbstractUser):
+    ROLE_EMPLOYEE = 'employee'
+    ROLE_HR_MANAGER = 'hr_manager'
+    ROLE_DEPARTMENT_MANAGER = 'department_manager'
+    ROLE_EXECUTIVE_MANAGER = 'executive_manager'
     ROLE_CHOICES = [
-        ('employee', 'Employee'),
-        ('hr_manager', 'HR Manager'),
-        ('department_manager', 'Department Manager'),
-        ('executive_manager', 'Executive Manager'),
+        (ROLE_EMPLOYEE, 'Employee'),
+        (ROLE_HR_MANAGER, 'HR Manager'),
+        (ROLE_DEPARTMENT_MANAGER, 'Department Manager'),
+        (ROLE_EXECUTIVE_MANAGER, 'Executive Manager'),
     ]
 
     MALE = 'male'
