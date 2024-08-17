@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from .models import Employee, Department, Position
+from django.shortcuts import render, redirect
+from django.db import transaction
+from .models import User, Employee, Department, Position
+from .forms.user_forms import UserForm
+from .forms.employee_forms import EmployeeForm
 from django.core.paginator import Paginator
+
 
 # Create your views here.
 def home(request):
@@ -16,9 +20,26 @@ def employees(request):
 
 
 def add_employee(request):
-    departments = Department.objects.all()
-    positions = Position.objects.all()
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        employee_form = EmployeeForm(request.POST)
+
+        if user_form.is_valid() and employee_form.is_valid():
+            with transaction.atomic():
+                user = user_form.save(commit=False)
+                user.role = User.ROLE_EMPLOYEE
+                user.save()
+
+                employee = employee_form.save(commit=False)
+                employee.user = user
+                employee.save()
+
+            redirect('employees')
+
+    else:
+        user_form = UserForm()
+        employee_form = EmployeeForm()
     return render(request, 'add_employee.html', {
-        'departments': departments,
-        'positions': positions,
+        'user_form': user_form,
+        'employee_form': employee_form,
     })
