@@ -10,7 +10,7 @@ class User(AbstractUser):
         ('department_manager', 'Department Manager'),
         ('executive_manager', 'Executive Manager'),
     ]
-
+    birthday = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='employee')
     groups = models.ManyToManyField(
         Group,
