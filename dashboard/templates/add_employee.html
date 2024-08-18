@@ -27,130 +27,96 @@
         <!-- Page Content -->
         <div class="content">
             <form method="POST">
-
-                <!-- Personal Info -->
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Personal Information</h3>
-                    </div>
+            {% csrf_token %}
+                <div class="block block-rounded px-4">
+                    <h2 class="content-heading">
+                        <i class="fa fa-fw fa-user-circle text-muted me-1"></i> User Profile
+                    </h2>
                     <div class="block-content">
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-8">
-                                {#                                <div class="mb-4">#}
-                                {#                                    <label class="form-label" for="employee-id">Employee ID</label>#}
-                                {#                                    <span class="text-danger">*</span>#}
-                                {#                                    <input type="text" class="form-control" id="employee-id">#}
-                                {#                                </div>#}
+
                                 <div class="mb-4">
                                     <label class="form-label" for="first-name">First name</label>
                                     <span class="text-danger">*</span>
-                                    <input type="text" class="form-control" id="first-name">
+                                    {{ user_form.first_name }}
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="last-name">Last name</label>
                                     <span class="text-danger">*</span>
-                                    <input type="text" class="form-control" id="last-name">
+                                    {{ user_form.last_name }}
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="example-flatpickr-default">Date de naissance</label>
-                                    <input type="text" class="js-flatpickr form-control" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
+                                    <label class="form-label" for="username">Username</label>
+                                    <span class="text-danger">*</span>
+                                    {{ user_form.username }}
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="email">Email</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <span class="text-danger">*</span>
+                                    {{ user_form.email }}
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="example-flatpickr-default">Date de naissance</label>
+                                    {{ user_form.birthday }}
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Gender</label>
                                     <div class="space-x-2">
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    id="radio-male"
-                                                    name="radio-gender"
-                                                    value="male"
-                                                    checked
-                                            />
-                                            <label
-                                                    class="form-check-label"
-                                                    for="radio-male"
-                                            >Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    id="radio-female"
-                                                    name="radio-gender"
-                                                    value="female"
-                                            />
-                                            <label
-                                                    class="form-check-label"
-                                                    for="radio-female"
-                                            >Female</label>
-                                        </div>
+                                        {% for radio in user_form.gender %}
+                                            <div class="form-check form-check-inline">
+                                                {{ radio.tag }}
+                                                <label
+                                                        class="form-check-label"
+                                                        for="{{ radio.id_for_label }}">
+                                                    {{ radio.choice_label }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Personal Info -->
-
-                <!-- Personal Info -->
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Word Information</h3>
-                    </div>
+                    <h2 class="content-heading">
+                        <i class="fa fa-fw fa-briefcase text-muted me-1"></i> Work information
+                    </h2>
                     <div class="block-content">
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-8">
-                                {#                                <div class="mb-4">#}
-                                {#                                    <label class="form-label" for="employee-id">Employee ID</label>#}
-                                {#                                    <span class="text-danger">*</span>#}
-                                {#                                    <input type="text" class="form-control" id="employee-id">#}
-                                {#                                </div>#}
-
-                                {# Employee ID (auto suggest) -> Input Field #}
-                                {# Department -> Dropdown #}
-                                {# Position -> Dropdown + Ability to add it #}
-                                {# Date Joined (optional) -> Date Picker #}
                                 <div class="mb-4">
                                     <label class="form-label" for="employee-id">Employee ID</label>
                                     <span class="text-danger">*</span>
-                                    <input type="text" class="form-control" id="employee-id">
+                                    {{ employee_form.employee_id }}
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="department">Department</label>
-                                    <select class="js-select2 form-select" id="department" data-placeholder="Choose one..">
-                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        {% for department in departments %}
-                                            <option value="{{ department.id }}">{{ department.name }}</option>
-                                        {% endfor %}
-
-                                    </select>
+                                    <span class="text-danger">*</span>
+                                    {{ employee_form.department }}
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="position">Position</label>
-                                    <select class="js-select2 form-select" id="position" data-placeholder="Choose one..">
-                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                        {% for position in positions %}
-                                            <option value="{{ position.id }}">{{ position.name }}</option>
-                                        {% endfor %}
-                                    </select>
+                                    <span class="text-danger">*</span>
+                                    {{ employee_form.position }}
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="example-flatpickr-default">Date de naissance</label>
-                                    <input type="text" class="js-flatpickr form-control" id="example-flatpickr-default" name="example-flatpickr-default" placeholder="Y-m-d">
+                                    <label class="form-label" for="example-flatpickr-default">Date Joined</label>
+                                    <span class="text-danger">*</span>
+                                    {{ employee_form.date_joined }}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-10 col-lg-8 d-flex justify-content-end px-3 mb-5">
+                            <button type="submit" class="btn btn-alt-primary">
+                                <i class="fa fa-check-circle opacity-50 me-1"></i> Create Employee
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <!-- Personal Info -->
             </form>
         </div>
-        <!-- END Page Content -->
     </main>
 {% endblock %}
 {% block plugins-js %}
