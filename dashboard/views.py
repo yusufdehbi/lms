@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 import json
 from .models import User, Employee, Department, Position
@@ -18,6 +18,11 @@ def employees(request):
     page_number = request.GET.get('page')
     page_employees = paginator.get_page(page_number)
     return render(request, 'employees.html', {'employees': page_employees})
+
+
+def employee(request, employee_id):
+    employee = get_object_or_404(Employee, id=employee_id)
+    return render(request, 'employee.html', {'employee': employee})
 
 
 def add_employee(request):

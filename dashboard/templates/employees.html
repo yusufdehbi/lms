@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>{{ employee.employee_id }}</td>
                                     <td class="fw-semibold">
-                                        <a href="#">{{ employee.user.first_name }} {{ employee.user.last_name }}</a>
+                                        <a href="{% url 'employee' employee.id %}">{{ employee.user.first_name }} {{ employee.user.last_name }}</a>
                                     </td>
                                     <td>{{ employee.user.email }}</td>
                                     <td>{{ employee.department }}</td>
