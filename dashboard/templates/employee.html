@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main id="main-container">
+        <div class="content content-full content-boxed">
+            <!-- Hero -->
+            <div class="rounded border overflow-hidden push">
+                <div class="px-4 py-3 bg-body-extra-light d-flex flex-column flex-md-row align-items-center">
+                    <img class="img-avatar img-avatar128 img-avatar-thumb " src="{% static 'assets/media/avatars/avatar13.jpg' %}" alt="">
+                    <div class="ms-3 flex-grow-1 text-center text-md-start my-3 my-md-0">
+                        <h1 class="fs-4 fw-bold mb-1">{{ employee.user.get_full_name }}</h1>
+                        <h2 class="fs-sm fw-medium text-muted mb-0">
+                            <span class="text-muted">{{ employee.position }}</span> &bull; <span class="text-muted">{{ employee.department }}</span>
+                        </h2>
+                    </div>
+                    <div class="space-x-1">
+                        <a href="#" class="btn btn-sm btn-alt-secondary space-x-1">
+                            <i class="fa fa-pencil-alt opacity-50"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END Hero -->
+        </div>
+    </main>
+{% endblock %}
