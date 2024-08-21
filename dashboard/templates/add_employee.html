@@ -27,7 +27,7 @@
         <!-- Page Content -->
         <div class="content">
             <form method="POST">
-            {% csrf_token %}
+                {% csrf_token %}
                 <div class="block block-rounded px-4">
                     <h2 class="content-heading">
                         <i class="fa fa-fw fa-user-circle text-muted me-1"></i> User Profile
@@ -119,6 +119,8 @@
         </div>
     </main>
 {% endblock %}
+
+
 {% block plugins-js %}
     <!-- jQuery -->
     <script src="{% static 'assets/js/lib/jquery.min.js' %}"></script>
@@ -127,7 +129,32 @@
     {#    <script src="{% static 'assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>#}
     <script src="{% static 'assets/js/plugins/flatpickr/flatpickr.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
 {% endblock %}
 {% block page-js %}
-    <script>Dashmix.helpersOnLoad(['js-flatpickr', 'jq-select2']);</script>
+    <script>
+        Dashmix.helpersOnLoad(['js-flatpickr', 'jq-select2']);
+
+
+        function displayFormsError(formErrors) {
+            for (const field in formErrors) {
+                let message = `<b>${field}</b>`
+                formErrors[field].forEach(err => {
+                    message += ` <br/>• ${err}`
+                })
+                Dashmix.helpers('jq-notify',
+                    {
+                        type: 'danger',
+                        icon: 'fa fa-times me-1',
+                        message: message
+                    });
+            }
+        }
+        
+        const userFormErrors = JSON.parse('{{ user_form_errors|escapejs }}')
+        const employeeFormErrors = JSON.parse(('{{ employee_form_errors|escapejs }}'))
+        displayFormsError(userFormErrors)
+        displayFormsError(employeeFormErrors)
+
+    </script>
 {% endblock %}

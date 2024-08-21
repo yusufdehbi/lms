@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db import transaction
+import json
 from .models import User, Employee, Department, Position
 from .forms.user_forms import UserForm
 from .forms.employee_forms import EmployeeForm
@@ -34,7 +35,14 @@ def add_employee(request):
                 employee.user = user
                 employee.save()
 
-            redirect('employees')
+            return redirect('employees')
+        else:
+            return render(request, 'add_employee.html', {
+                'user_form': user_form,
+                'employee_form': employee_form,
+                'user_form_errors': json.dumps(user_form.errors),
+                'employee_form_errors': json.dumps(employee_form.errors),
+            })
 
     else:
         user_form = UserForm()
