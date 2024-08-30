@@ -107,7 +107,7 @@ class LeaveRequest(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     reason = models.TextField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='P')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDING)
     applied_on = models.DateTimeField(auto_now_add=True)
     approved_on = models.DateTimeField(blank=True, null=True)
 

@@ -12,7 +12,6 @@ class Command(BaseCommand):
             {"name": "Maternity Leave", "description": "Fully paid leave for female employees.", "days_allocated": 14, "gender_restriction": LeaveType.FEMALE},
             {"name": "Paternity Leave", "description": "Leave for fathers upon the birth of a child.", "days_allocated": 3, "gender_restriction": LeaveType.MALE},
             {"name": "Marriage Leave", "description": "Leave granted for the employee's own marriage.", "days_allocated": 4, "gender_restriction": LeaveType.ANY},
-            {"name": "Child Marriage Leave", "description": "Leave for the marriage of the employee's child.", "days_allocated": 2, "gender_restriction": LeaveType.ANY},
             {"name": "Bereavement Leave", "description": "Leave for the death of close relatives.", "days_allocated": 3, "gender_restriction": LeaveType.ANY},
             {"name": "Circumcision Leave", "description": "Leave granted for the circumcision of the employee's son.", "days_allocated": 1, "gender_restriction": LeaveType.MALE},
             {"name": "Surgery Leave", "description": "Leave for a spouse or dependent child's surgery.", "days_allocated": 2, "gender_restriction": LeaveType.ANY},

@@ -30,83 +30,61 @@
                 {% csrf_token %}
                 <div class="block block-rounded px-4">
                     <h2 class="content-heading">
-                        <i class="fa fa-fw fa-user-circle text-muted me-1"></i> User Profile
+                        <i class="fa fa-fw fa-user-circle text-muted me-1"></i> Leave Request
                     </h2>
                     <div class="block-content">
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-8">
 
                                 <div class="mb-4">
-                                    <label class="form-label" for="first-name">First name</label>
+                                    <label class="form-label" for="first-name">Employee</label>
                                     <span class="text-danger">*</span>
-                                    {{ user_form.first_name }}
+{#                                    {{ user_form.first_name }}#}
+                                    {{ leave_request_form.employee }}
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="last-name">Last name</label>
+                                    <label class="form-label" for="last-name">Leave Type</label>
                                     <span class="text-danger">*</span>
-                                    {{ user_form.last_name }}
+{#                                    {{ user_form.last_name }}#}
+                                    {{ leave_request_form.leave_type }}
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="username">Username</label>
+                                    <label class="form-label" for="username">Start Date</label>
                                     <span class="text-danger">*</span>
-                                    {{ user_form.username }}
+{#                                    {{ user_form.username }}#}
+                                    {{ leave_request_form.start_date }}
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="email">Email</label>
+                                    <label class="form-label" for="email">End Date</label>
                                     <span class="text-danger">*</span>
-                                    {{ user_form.email }}
+{#                                    {{ user_form.email }}#}
+                                    {{ leave_request_form.end_date }}
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label" for="example-flatpickr-default">Date de naissance</label>
-                                    {{ user_form.birthday }}
+                                    <label class="form-label" for="example-flatpickr-default">Reason</label>
+{#                                    {{ user_form.birthday }}#}
+                                    {{ leave_request_form.reason }}
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Gender</label>
-                                    <div class="space-x-2">
-                                        {% for radio in user_form.gender %}
-                                            <div class="form-check form-check-inline">
-                                                {{ radio.tag }}
-                                                <label
-                                                        class="form-check-label"
-                                                        for="{{ radio.id_for_label }}">
-                                                    {{ radio.choice_label }}
-                                                </label>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
+
+{#                                <div class="mb-4">#}
+{#                                    <label class="form-label">Gender</label>#}
+{#                                    <div class="space-x-2">#}
+{#                                        {% for radio in user_form.gender %}#}
+{#                                            <div class="form-check form-check-inline">#}
+{#                                                {{ radio.tag }}#}
+{#                                                <label#}
+{#                                                        class="form-check-label"#}
+{#                                                        for="{{ radio.id_for_label }}">#}
+{#                                                    {{ radio.choice_label }}#}
+{#                                                </label>#}
+{#                                            </div>#}
+{#                                        {% endfor %}#}
+{#                                    </div>#}
+{#                                </div>#}
                             </div>
                         </div>
                     </div>
-                    <h2 class="content-heading">
-                        <i class="fa fa-fw fa-briefcase text-muted me-1"></i> Work information
-                    </h2>
-                    <div class="block-content">
-                        <div class="row justify-content-center">
-                            <div class="col-md-10 col-lg-8">
-                                <div class="mb-4">
-                                    <label class="form-label" for="employee-id">Employee ID</label>
-                                    <span class="text-danger">*</span>
-                                    {{ employee_form.employee_id }}
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="department">Department</label>
-                                    <span class="text-danger">*</span>
-                                    {{ employee_form.department }}
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="position">Position</label>
-                                    <span class="text-danger">*</span>
-                                    {{ employee_form.position }}
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="example-flatpickr-default">Date Joined</label>
-                                    <span class="text-danger">*</span>
-                                    {{ employee_form.date_joined }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="d-flex justify-content-center">
                         <div class="col-md-10 col-lg-8 d-flex justify-content-end px-3 mb-5">
                             <button type="submit" class="btn btn-alt-primary">

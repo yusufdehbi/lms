@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 import json
-from .models import User, Employee, Department, Position
+from .models import User, Employee, Department, Position, LeaveRequest
 from .forms.user_forms import UserForm
 from .forms.employee_forms import EmployeeForm
+from .forms.leave_forms import LeaveRequestForm
 from django.core.paginator import Paginator
 
 
@@ -55,4 +56,23 @@ def add_employee(request):
     return render(request, 'add_employee.html', {
         'user_form': user_form,
         'employee_form': employee_form,
+    })
+
+
+def add_leave(request):
+    if request.method == 'POST':
+        leave_request_form = LeaveRequestForm(request)
+
+        if leave_request_form.is_valid():
+            leave_request_form.save()
+            return render('employees')
+        else:
+            return render(request, 'add_leave.html', {
+                'leave_request_form': leave_request_form,
+                'leave_request_form_errors': json.dumps(leave_request_form.errors)
+            })
+    else:
+        leave_request_form = LeaveRequestForm()
+    return render(request, 'add_leave.html', {
+        'leave_request_form': leave_request_form
     })
