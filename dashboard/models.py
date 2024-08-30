@@ -69,9 +69,24 @@ class Employee(models.Model):
 
 
 class LeaveType(models.Model):
+    MALE = 'male'
+    FEMALE = 'female'
+    ANY = 'any'
+    GENDER_RESTRICTION_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (ANY, 'any')
+    ]
+
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     days_allocated = models.IntegerField()
+    gender_restriction = models.CharField(max_length=10, choices=GENDER_RESTRICTION_CHOICES, default='any')
+
+    def save(self, *args, **kwargs):
+        if self.gender_restriction not in [choice[0] for choice in self.GENDER_RESTRICTION_CHOICES]:
+            raise ValueError(f'Invalid gender restriction: {self.gender_restriction}')
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
