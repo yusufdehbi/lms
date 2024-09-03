@@ -29,7 +29,7 @@
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     {% block plugins-css %}
-    	
+
     {% endblock %}
 
     <!-- Dashmix framework -->
@@ -99,7 +99,9 @@
 -->
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
     {% comment %} Side Overlay {% endcomment %}
-    {% include "partials/sideoverlay.html" %}
+    {% block sidebar_overlay %}
+        {% include "partials/sideoverlay.html" %}
+    {% endblock %}
 
     {% comment %} Side Bar {% endcomment %}
     {% include "partials/sidebar.html" %}

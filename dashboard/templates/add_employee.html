@@ -97,7 +97,15 @@
                                 <div class="mb-4">
                                     <label class="form-label" for="position">Position</label>
                                     <span class="text-danger">*</span>
-                                    {{ employee_form.position }}
+                                    <div class="d-flex justify-content-between">
+                                        <div class="w-100">
+                                            {{ employee_form.position }}
+                                        </div>
+                                        <button type="button" class="btn btn-alt-secondary ms-3" data-toggle="layout" data-action="side_overlay_open">
+                                            <i class="fa fa-fw fa-plus"></i>
+                                        </button>
+                                    </div>
+
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="example-flatpickr-default">Date Joined</label>
@@ -136,7 +144,7 @@
 {% block page-js %}
     <script>
         Dashmix.helpersOnLoad(['js-flatpickr', 'jq-select2']);
-
+        Dashmix.layout('side_overlay_open');
 
         function displayFormsError(formErrors) {
             for (const field in formErrors) {
@@ -161,4 +169,7 @@
 
     </script>
     <script src="{% static 'assets/_js/pages/add_employee_form_validation.js' %}"></script>
+{% endblock %}
+{% block sidebar_overlay %}
+	{% include 'sidebar_overlay_add_position.html' %}
 {% endblock %}
