@@ -26,7 +26,7 @@
 
         <!-- Page Content -->
         <div class="content">
-            <form class="js-validation" method="POST" novalidate="novalidate">
+            <form class="js-validation" method="POST" >
                 {% csrf_token %}
                 <div class="block block-rounded px-4">
                     <h2 class="content-heading">
@@ -138,5 +138,5 @@
 
 
     </script>
-    <script src="{% static 'assets/_js/pages/add_employee_form_validation.js' %}"></script>
+{#    <script src="{% static 'assets/_js/pages/add_employee_form_validation.js' %}"></script>#}
 {% endblock %}

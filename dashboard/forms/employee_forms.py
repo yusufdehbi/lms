@@ -17,7 +17,8 @@ class EmployeeForm(forms.ModelForm):
             }),
             'position': forms.Select(attrs={
                 'class': 'js-select2 form-select',
-                'data-placeholder': 'Choose position'
+                'data-placeholder': 'Choose position',
+                'id': 'positions-select'
             }),
             'date_joined': forms.DateInput(attrs={
                 'class': 'js-flatpickr form-control',

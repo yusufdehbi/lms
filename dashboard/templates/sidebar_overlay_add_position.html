@@ -14,11 +14,29 @@
         <!-- Side Overlay Tabs -->
         <div class="block block-transparent pull-x pull-t">
             <div class="px-3 my-3">
-                <form>
+                <form id="position-form" data-url="{% url 'add_position' %}">
                     <label for="position-name" class="form-label">Position name</label>
-                    <input id="position-name" class="form-control" type="text" placeholder="position name" required/>
+                    <input id="position-name" class="form-control" type="text" placeholder="position name" name="position_name" required/>
                     <button class="btn btn-alt-primary w-100 my-3" type="submit">Submit</button>
                 </form>
+                <!-- Striped Table -->
+                <table id="positions-table" class="table table-striped table-vcenter border">
+                    <thead>
+                    <tr>
+                        <th>Positions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for position in positions %}
+                        <tr>
+                            <td>
+                                {{ position.name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <!-- END Positions Table -->
             </div>
         </div>
         <!-- END Side Overlay Tabs -->

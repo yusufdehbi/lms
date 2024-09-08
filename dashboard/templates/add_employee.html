@@ -168,8 +168,9 @@
 
 
     </script>
-    <script src="{% static 'assets/_js/pages/add_employee_form_validation.js' %}"></script>
+    <script src="{% static 'assets/_js/my_pages/add_position_ajax.js' %}"></script>
+{#    <script src="{% static 'assets/_js/pages/add_employee_form_validation.js' %}"></script>#}
 {% endblock %}
 {% block sidebar_overlay %}
-	{% include 'sidebar_overlay_add_position.html' %}
+	{% include 'sidebar_overlay_add_position.html' with positions=positions %}
 {% endblock %}
