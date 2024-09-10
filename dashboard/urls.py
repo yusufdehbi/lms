@@ -1,4 +1,5 @@
 from django.urls import path
+from debug_toolbar.toolbar import debug_toolbar_urls
 from . import views
 
 urlpatterns = [
@@ -10,4 +11,4 @@ urlpatterns = [
     path('add_position', views.add_position, name='add_position'),
     # Leaves
     path('add_leave/', views.add_leave, name='add_leave'),
-]
+] + debug_toolbar_urls()
