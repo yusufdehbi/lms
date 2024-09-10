@@ -1,4 +1,5 @@
 from django.urls import path
+from debug_toolbar.toolbar import debug_toolbar_urls
 from . import views
 
 urlpatterns = [
@@ -11,4 +12,4 @@ urlpatterns = [
     # Leaves
     path('add_leave/', views.add_leave, name='add_leave'),
     path('leave_requests/', views.leave_requests, name='leave_requests')
-]
+] + debug_toolbar_urls()
