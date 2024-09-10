@@ -111,6 +111,9 @@ class LeaveRequest(models.Model):
     applied_on = models.DateTimeField(auto_now_add=True)
     approved_on = models.DateTimeField(blank=True, null=True)
 
+    def numbers_of_days(self):
+        return (self.start_date - self.end_date).days + 1
+
     def __str__(self):
         return f"{self.employee} - {self.leave_type} ({self.start_date} to {self.end_date})"
 

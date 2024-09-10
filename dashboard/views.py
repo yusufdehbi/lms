@@ -84,6 +84,12 @@ def add_leave(request):
         'leave_request_form': leave_request_form
     })
 
+
+def leave_requests(request):
+    leave_requests_list = LeaveRequest.objects.all()
+    return render(request, 'leave_requests.html')
+
+
 @csrf_exempt
 def add_position(request):
     if request.method == 'POST':

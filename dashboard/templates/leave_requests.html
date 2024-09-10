@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main id="main-container">
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Leave Requests</h1>
+                    <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'leave_requests' %}">Leave Requests</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+        <div class="content">
+            <div class="row items-push">
+                <div class="col-4">
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default ribbon ribbon-warning">
+                            <div class="ribbon-box">
+                                <i class="fa fa-clock me-1"></i>
+                                Pending
+                            </div>
+                            <div class="block-title">Youssef Dehbi <span class="text-muted">| Emp47</span></div>
+                        </div>
+                        <div class="block-content">
+                            <ul class="fa-ul list-icons">
+                                <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                    <div class="fw-semibold">01-03-2024</div>
+                                    <div class="text-muted">Start Date</div>
+                                </li>
+                                <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                    <div class="fw-semibold">07-03-2024</div>
+                                    <div class="text-muted">End Date</div>
+                                </li>
+                                <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-hourglass-half"></i>
+                                </span>
+                                    <div class="fw-semibold">7 Days</div>
+                                    <div class="text-muted">Leave's days</div>
+                                </li>
+                                <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-door-open"></i>
+                                </span>
+                                    <div class="fw-semibold">Annual Leave</div>
+                                    <div class="text-muted">Leave Type</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block-content block-content-full">
+                            <div class="row g-sm">
+                                <div class="col-6">
+                                    <a class="btn w-100 btn-alt-secondary">
+                                        <i class="fa fa-eye me-1 opacity-50"></i>
+                                        View
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a class="btn w-100 btn-alt-danger">
+                                        <i class="fa fa-xmark me-1 opacity-50"></i>
+                                        Reject
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
