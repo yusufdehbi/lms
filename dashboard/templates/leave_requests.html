@@ -22,66 +22,87 @@
         <!-- END Hero -->
         <div class="content">
             <div class="row items-push">
-                <div class="col-4">
+                {% for leave_request in leave_requests %}
+                    <div class="col-4">
                     <div class="block block-rounded">
-                        <div class="block-header block-header-default ribbon ribbon-warning">
-                            <div class="ribbon-box">
-                                <i class="fa fa-clock me-1"></i>
-                                Pending
-                            </div>
-                            <div class="block-title">Youssef Dehbi <span class="text-muted">| Emp47</span></div>
-                        </div>
-                        <div class="block-content">
-                            <ul class="fa-ul list-icons">
-                                <li>
+                    <div class="block-header block-header-default ribbon
+                                {% if leave_request.status == leave_request.PENDING %}
+                                    ribbon-warning
+                                ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-clock me-1"></i>
+                    {% elif leave_request.status == leave_request.APPROVED %}
+                        ribbon-success
+                        ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-check-circle me-1"></i>
+                    {% elif leave_request.status == leave_request.REJECTED %}
+                        ribbon-danger
+                        ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-xmark-circle me-1"></i>
+                    {% else %}
+                        ribbon-light
+                        ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-xmark me-1"></i>
+                    {% endif %}
+                    {{ leave_request.get_status_display }}
+                    </div>
+                    <div class="block-title">{{ leave_request.employee.user.get_full_name }} <span class="text-muted">| {{ leave_request.employee.employee_id }}</span></div>
+                    </div>
+                    <div class="block-content">
+                        <ul class="fa-ul list-icons">
+                            <li>
                                 <span class="fa-li text-secondary">
                                     <i class="fa fa-calendar"></i>
                                 </span>
-                                    <div class="fw-semibold">01-03-2024</div>
-                                    <div class="text-muted">Start Date</div>
-                                </li>
-                                <li>
+                                <div class="fw-semibold">{{ leave_request.start_date }}</div>
+                                <div class="text-muted">Start Date</div>
+                            </li>
+                            <li>
                                 <span class="fa-li text-secondary">
                                     <i class="fa fa-calendar"></i>
                                 </span>
-                                    <div class="fw-semibold">07-03-2024</div>
-                                    <div class="text-muted">End Date</div>
-                                </li>
-                                <li>
+                                <div class="fw-semibold">{{ leave_request.end_date }}</div>
+                                <div class="text-muted">End Date</div>
+                            </li>
+                            <li>
                                 <span class="fa-li text-secondary">
                                     <i class="fa fa-hourglass-half"></i>
                                 </span>
-                                    <div class="fw-semibold">7 Days</div>
-                                    <div class="text-muted">Leave's days</div>
-                                </li>
-                                <li>
+                                <div class="fw-semibold">{{ leave_request.numbers_of_days }} Days</div>
+                                <div class="text-muted">Leave's days</div>
+                            </li>
+                            <li>
                                 <span class="fa-li text-secondary">
                                     <i class="fa fa-door-open"></i>
                                 </span>
-                                    <div class="fw-semibold">Annual Leave</div>
-                                    <div class="text-muted">Leave Type</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <div class="row g-sm">
-                                <div class="col-6">
-                                    <a class="btn w-100 btn-alt-secondary">
-                                        <i class="fa fa-eye me-1 opacity-50"></i>
-                                        View
-                                    </a>
-                                </div>
-                                <div class="col-6">
-                                    <a class="btn w-100 btn-alt-danger">
-                                        <i class="fa fa-xmark me-1 opacity-50"></i>
-                                        Reject
-                                    </a>
-                                </div>
+                                <div class="fw-semibold">Annual Leave</div>
+                                <div class="text-muted">Leave Type</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <div class="row g-sm">
+                            <div class="col-6">
+                                <a class="btn w-100 btn-alt-secondary">
+                                    <i class="fa fa-eye me-1 opacity-50"></i>
+                                    View
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a class="btn w-100 btn-alt-danger">
+                                    <i class="fa fa-trash me-1 opacity-50"></i>
+                                    Delete
+                                </a>
                             </div>
                         </div>
                     </div>
+                    </div>
+                    </div>
+                {% endfor %}
                 </div>
-            </div>
-        </div>
+                </div>
     </main>
 {% endblock %}

@@ -86,8 +86,11 @@ def add_leave(request):
 
 
 def leave_requests(request):
-    leave_requests_list = LeaveRequest.objects.all()
-    return render(request, 'leave_requests.html')
+    leave_requests_list = LeaveRequest.objects.all().select_related('employee__user')
+    context = {
+        'leave_requests': leave_requests_list
+    }
+    return render(request, 'leave_requests.html', context)
 
 
 @csrf_exempt
