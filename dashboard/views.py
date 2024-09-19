@@ -99,3 +99,7 @@ def add_position(request):
         position_name = request.POST.get('position_name')
         position = Position.objects.create(name=position_name)
         return JsonResponse({'position_id': position.id, 'position_name': position.name})
+
+
+def login(request):
+    return render(request, 'auth/login.html')
