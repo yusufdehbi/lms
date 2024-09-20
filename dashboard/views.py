@@ -102,4 +102,4 @@ def add_position(request):
 
 
 def login(request):
-    return render(request, 'auth/login.html')
+    return render(request, 'auth/templates/login.html')

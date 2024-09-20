@@ -75,6 +75,7 @@
                                         <span class="text-dark">OD</span><span class="text-primary">CO</span>
                                     </a>
                                     <p class="text-uppercase fw-bold fs-sm text-muted">Sign In</p>
+                                    <p class="text-uppercase fw-bold fs-sm text-muted">{{ user.is_authenticated }}</p>
                                 </div>
                                 <!-- END Header -->
 
@@ -85,15 +86,22 @@
                                     {% csrf_token %}
                                     <div class="mb-4">
                                         <div class="input-group input-group-lg">
-                                            <input type="text" class="form-control" id="login-username" name="login-username" placeholder="Username">
+                                            {#                                            <input type="text" class="form-control" id="login-username" name="login-username" placeholder="Username">#}
+                                            {{ form.username }}
+
                                             <span class="input-group-text">
                           <i class="fa fa-user-circle"></i>
                         </span>
                                         </div>
+                                        {% if form.username.errors %}
+                                            <div class="invalid-feedback animated fadeIn" style="display: block">{{ form.username.errors }}</div>
+                                        {% endif %}
+
                                     </div>
                                     <div class="mb-4">
                                         <div class="input-group input-group-lg">
-                                            <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password">
+                                            {#                                            <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password">#}
+                                            {{ form.password }}
                                             <span class="input-group-text">
                           <i class="fa fa-asterisk"></i>
                         </span>
@@ -115,6 +123,7 @@
                                     </div>
                                 </form>
                                 <!-- END Sign In Form -->
+
                             </div>
 
                         </div>
@@ -132,5 +141,5 @@
     <script src="{% static 'assets/js/plugins/jquery-validation/jquery.validate.min.js' %}"></script>
 {% endblock %}
 {% block page-js %}
-    <script src="{% static 'assets/js/pages/auth_signin.js' %}"></script>
+    {#    <script src="{% static 'assets/js/pages/auth_signin.js' %}"></script>#}
 {% endblock %}
