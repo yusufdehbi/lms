@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
@@ -18,7 +19,7 @@ def home(request):
     return render(request, 'overview.html')
 
 
-@role_required(allowed_roles=[User.ROLE_EXECUTIVE_MANAGER, User.ROLE_DEPARTMENT_MANAGER, User.ROLE_HR_MANAGER])
+# @role_required(allowed_roles=[User.ROLE_EXECUTIVE_MANAGER, User.ROLE_DEPARTMENT_MANAGER, User.ROLE_HR_MANAGER])
 def employees(request):
     employees = Employee.objects.all()
     paginator = Paginator(employees, 10)
@@ -101,3 +102,11 @@ def add_position(request):
         position_name = request.POST.get('position_name')
         position = Position.objects.create(name=position_name)
         return JsonResponse({'position_id': position.id, 'position_name': position.name})
+
+
+def positions(request):
+    positions_list = Position.objects.all().annotate(employee_count=Count('employee'))
+    context = {
+        'positions': positions_list
+    }
+    return render(request, 'positions.html', context)

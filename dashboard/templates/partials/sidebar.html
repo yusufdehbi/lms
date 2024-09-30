@@ -1,11 +1,11 @@
-{% load static %}
+        {% load static %}
 <nav id="sidebar" aria-label="Main Navigation">
     <!-- Side Header -->
     <div class="bg-header-dark">
         <div class="content-header bg-white-5">
             <!-- Logo -->
             <a class="fw-semibold text-white tracking-wide" href="#">
-               <img width="120" src="{% static 'assets/media/logos/logo-horizontal-white.png' %}"/>
+                <img width="120" src="{% static 'assets/media/logos/logo-horizontal-white.png' %}"/>
             </a>
             <!-- END Logo -->
 
@@ -46,35 +46,59 @@
                         <span class="nav-main-link-badge badge rounded-pill bg-primary">3</span>
                     </a>
                 </li>
-                <li class="nav-main-heading">Managemenet</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon fa fa-puzzle-piece"></i>
-                        <span class="nav-main-link-name">Leave</span>
+                    <a class="nav-main-link {% if request.path == '/calendar/' %}active{% endif %}" href="#">
+                        <i class="nav-main-link-icon fa fa-calendar"></i>
+                        <span class="nav-main-link-name">Calendar</span>
                     </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="{% url 'add_leave' %}"><span class="nav-main-link-name">Add</span></a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="{% url 'leave_requests' %}"><span class="nav-main-link-name">Manage</span></a>
-                        </li>
-                    </ul>
-                </li>   
-                <li class="nav-main-item {% if request.path == '/employees/' or request.path == '/add_employee/' %}open{% endif %}">
-                    <a class="nav-main-link nav-main-link-submenu {% if request.path == '/employees/' or request.path == '/add_employee/' %} active {% endif %}" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon fa fa-users"></i>
-                        <span class="nav-main-link-name ">Employees</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="{% url 'add_employee' %}"><span class="nav-main-link-name">Add</span></a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="{% url 'employees' %}"><span class="nav-main-link-name">Manage</span></a>
-                        </li>
-                    </ul>
                 </li>
+                <li class="nav-main-heading">Leaves</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/leave_requests/' %}active{% endif %}" href="{% url 'leave_requests' %}">
+                        <i class="nav-main-link-icon fa fa-puzzle-piece"></i>
+                        <span class="nav-main-link-name">Leaves</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/add_leave/' %}active{% endif %}" href="{% url 'add_leave' %}">
+                        <i class="nav-main-link-icon fa fa-add"></i>
+                        <span class="nav-main-link-name">Add Leave</span>
+                    </a>
+                </li>
+                <li class="nav-main-heading">Employees</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/employees/' %}active{% endif %}" href="{% url 'employees' %}">
+                        <i class="nav-main-link-icon fa fa-puzzle-piece"></i>
+                        <span class="nav-main-link-name">Employees</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/add_employee/' %}active{% endif %}" href="{% url 'add_employee' %}">
+                        <i class="nav-main-link-icon fa fa-add"></i>
+                        <span class="nav-main-link-name">Add Employee</span>
+                    </a>
+                </li>
+                <li class="nav-main-heading">Configuration</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/positions/' %}active{% endif %}" href="{% url 'positions' %}">
+                        <i class="nav-main-link-icon fa fa-briefcase"></i>
+                        <span class="nav-main-link-name">Job Positions</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/departments/' %}active{% endif %}" href="#">
+                        <i class="nav-main-link-icon fa fa-building"></i>
+                        <span class="nav-main-link-name">Departments</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link {% if request.path == '/leave_types/' %}active{% endif %}" href="#">
+                        <i class="nav-main-link-icon fa fa-calendar-days"></i>
+                        <span class="nav-main-link-name">Leave Types</span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
         <!-- END Side Navigation -->
