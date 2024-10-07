@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load url_extras %}
+{% block content %}
+    <main id="main-container">
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Departments</h1>
+
+                    <button class="btn btn-primary" data-toggle="layout" data-action="side_overlay_open">Add Department</button>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            {% if departments %}
+                <div class="row items-push align-items-stretch" id="departments-list">
+                    {% for department in departments %}
+                        <div class="col-md-6 col-xl-3">
+                            <div class="block block-rounded">
+                                <div class="block-content block-content-full">
+                                    <div class="text-center py-4">
+                                        <div class="item item-circle bg-body-light mx-auto push">
+                                            <span class="text-info fs-lg fw-semibold">{{ department.name|department_initials }}</span>
+                                        </div>
+                                        <h4 class="mb-0">{{ department.name }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="d-flex flex-column align-items-center mt-5 gap-3">
+                    <h1>No Departments Available, Add One !</h1>
+                    <i class="fa fa-search-minus" style="font-size: 8rem; opacity: 0.5"> </i>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+{% block plugins-js %}
+    <script src="{% static 'assets/js/lib/jquery.min.js' %}"></script>
+{% endblock %}
+{% block page-js %}
+	<script>
+        Dashmix.layout('side_overlay_open')
+    </script>
+    <script src="{% static 'assets/_js/my_pages/add_department_ajax.js' %}"></script>
+{% endblock %}
+{% block sidebar_overlay %}
+	{% include 'sidebar_overlay_add_department.html' %}
+{% endblock %}

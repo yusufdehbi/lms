@@ -19,5 +19,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(authentication_form=LoginForm, template_name='registration/login.html'), name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name="logout"),
     # Configuration
-    path('positions/', views.positions, name='positions')
+    path('positions/', views.positions, name='positions'),
+    path('departments/', views.departments, name='departments'),
+    path('add_department/', views.add_department, name='add_department'),
 ] + debug_toolbar_urls()

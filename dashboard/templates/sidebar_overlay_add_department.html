@@ -1,0 +1,45 @@
+{% load static %}
+<aside id="side-overlay">
+    <!-- Side Header -->
+    <div class="content-header">
+        <h2 class="content-heading">Add department</h2>
+        <button class="btn btn-sm btn-outline-secondary">
+            <i class="fa fa-fw fa-xmark"></i>
+        </button>
+    </div>
+    <!-- END Side Header -->
+
+    <!-- Side Content -->
+    <div class="content-side">
+        <!-- Side Overlay Tabs -->
+        <div class="block block-transparent pull-x pull-t">
+            <div class="px-3 my-3">
+                <form id="department-form" data-url="{% url 'add_department' %}">
+                    <label for="department-name" class="form-label">department name</label>
+                    <input id="department-name" class="form-control" type="text" placeholder="department name" name="department_name" required/>
+                    <button class="btn btn-alt-primary w-100 my-3" type="submit">Submit</button>
+                </form>
+                <!-- Striped Table -->
+                <table id="departments-table" class="table table-striped table-vcenter border">
+                    <thead>
+                    <tr>
+                        <th>Departments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for department in departments %}
+                        <tr>
+                            <td>
+                                {{ department.name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <!-- END departments Table -->
+            </div>
+        </div>
+        <!-- END Side Overlay Tabs -->
+    </div>
+    <!-- END Side Content -->
+</aside>
