@@ -21,7 +21,8 @@
         </div>
         <!-- END Hero -->
         <div class="content">
-            <div class="row items-push">
+            {% if leave_requests %}
+                <div class="row items-push">
                 {% for leave_request in leave_requests %}
                     <div class="col-4">
                     <div class="block block-rounded">
@@ -102,7 +103,13 @@
                     </div>
                     </div>
                 {% endfor %}
+            </div>
+            {% else %}
+                <div class="d-flex flex-column align-items-center mt-5 gap-3">
+                    <h1>No Leave Request Available, Add One !</h1>
+                    <i class="fa fa-search-minus" style="font-size: 8rem; opacity: 0.5"> </i>
                 </div>
-                </div>
+            {% endif %}
+        </div>
     </main>
 {% endblock %}
