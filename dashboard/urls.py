@@ -22,4 +22,5 @@ urlpatterns = [
     path('positions/', views.positions, name='positions'),
     path('departments/', views.departments, name='departments'),
     path('add_department/', views.add_department, name='add_department'),
+    path('leave_types/', views.leave_types, name='leave_types'),
 ] + debug_toolbar_urls()

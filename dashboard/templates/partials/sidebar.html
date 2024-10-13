@@ -86,13 +86,13 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link {% if request.path == '/departments/' %}active{% endif %}" href="#">
+                    <a class="nav-main-link {% if request.path == '/departments/' %}active{% endif %}" href="{% url 'departments' %}">
                         <i class="nav-main-link-icon fa fa-building"></i>
                         <span class="nav-main-link-name">Departments</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link {% if request.path == '/leave_types/' %}active{% endif %}" href="#">
+                    <a class="nav-main-link {% if request.path == '/leave_types/' %}active{% endif %}" href="{% url 'leave_types' %}">
                         <i class="nav-main-link-icon fa fa-calendar-days"></i>
                         <span class="nav-main-link-name">Leave Types</span>
                     </a>

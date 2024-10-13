@@ -7,13 +7,11 @@
         <div class="bg-body-light">
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Employees</h1>
+                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Leave Types</h1>
                     <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Layout</li>
-                            <li class="breadcrumb-item">Page</li>
-                            <li class="breadcrumb-item active" aria-current="page">Default</li>
-                        </ol>
+                       <a href="#" class="btn btn-primary">
+                                Add Leave Types
+                            </a>
                     </nav>
                 </div>
             </div>
@@ -22,63 +20,38 @@
 
         <!-- Page Content -->
         <div class="content">
-            {% if employees %}
+            {% if leave_types %}
 
                 <!-- Full Table -->
                 <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Full Table</h3>
-                        <div class="block-options">
-                            <a href="#" class="btn btn-primary">
-                                Add Employee
-                            </a>
-                        </div>
-                    </div>
+
                     <div class="block-content">
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-vcenter">
                                 <thead>
                                 <tr>
-                                    <th>Employee ID</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Department</th>
-                                    <th>Position</th>
-                                    <th>Date Joined</th>
-                                    <th>Actions</th>
+                                    <th>Description</th>
+                                    <th>Days Allocated</th>
+                                    <th>Gender Restriction</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for employee in employees %}
+                                {% for leave_type in leave_types %}
                                     <tr>
-                                        <td>{{ employee.employee_id }}</td>
-                                        <td class="fw-semibold">
-                                            <a href="{% url 'employee' employee.id %}">{{ employee.user.first_name }} {{ employee.user.last_name }}</a>
-                                        </td>
-                                        <td>{{ employee.user.email }}</td>
-                                        <td>{{ employee.department }}</td>
-                                        <td>{{ employee.position }}</td>
-                                        <td>{{ employee.date_joined }}</td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil-alt"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <td>{{ leave_type.name }}</td>
+                                        <td>{{ leave_type.description }}</td>
+                                        <td>{{ leave_type.days_allocated }}</td>
+                                        <td>{{ leave_type.gender_restriction }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>
                             <nav aria-label="Page navigation">
-
                                 <ul class="pagination">
                                     <!-- First and Previous -->
-                                    {% if employees.has_previous %}
+                                    {% if leave_types.has_previous %}
                                         <li class="page-item">
                                             <a class="page-link" href="?page=1">
                                                 <i class="fa fa-angle-double-left"></i>
@@ -102,30 +75,30 @@
                                         </li>
                                     {% endif %}
 
-                                    {% for num in employees.paginator.page_range %}
-                                        {% if num > employees.number|add:-3 and num < employees.number|add:3 %}
-                                            {% if num == employees.number %}
+                                    {% for num in leave_types.paginator.page_range %}
+                                        {% if num > leave_types.number|add:-3 and num < leave_types.number|add:3 %}
+                                            {% if num == leave_types.number %}
                                                 <li class="page-item active"><a class="page-link">{{ num }}</a></li>
                                             {% else %}
                                                 <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
                                             {% endif %}
-                                        {% elif num == 1 or num == employees.paginator.num_pages %}
+                                        {% elif num == 1 or num == leave_types.paginator.num_pages %}
                                             <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                                        {% elif num == employees.number|add:-3 or num == employees.number|add:3 %}
+                                        {% elif num == leave_types.number|add:-3 or num == leave_types.number|add:3 %}
                                             <li class="page-item"><a class="page-link"><span>...</span></a></li>
                                         {% endif %}
                                     {% endfor %}
                                     <!-- Next and Last -->
-                                    {% if employees.has_next %}
+                                    {% if leave_types.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ employees.next_page_number }}">
+                                            <a class="page-link" href="?page={{ leave_types.next_page_number }}">
                                       <span aria-hidden="true">
                                         <i class="fa fa-angle-right"></i>
                                       </span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ employees.paginator.num_pages }}">
+                                            <a class="page-link" href="?page={{ leave_types.paginator.num_pages }}">
                                       <span aria-hidden="true">
                                         <i class="fa fa-angle-double-right"></i>
                                       </span>
@@ -144,7 +117,7 @@
                                         </li>
                                     {% endif %}
                                 </ul>
-                           
+
                             </nav>
                         </div>
                     </div>
@@ -152,7 +125,7 @@
                 <!-- END Full Table -->
             {% else %}
                 <div class="d-flex flex-column align-items-center mt-5 gap-3">
-                    <h1>No Leave Employee Available, Add One !</h1>
+                    <h1>No Leave Leave Type Available, Add One !</h1>
                     <i class="fa fa-search-minus" style="font-size: 8rem; opacity: 0.5"> </i>
                 </div>
             {% endif %}

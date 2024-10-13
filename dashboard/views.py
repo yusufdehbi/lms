@@ -7,7 +7,7 @@ from dashboard.utils.auth_utils import role_required
 
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import User, Employee, Department, Position, LeaveRequest
+from .models import User, Employee, Department, Position, LeaveRequest, LeaveType
 from .forms.user_forms import UserForm
 from .forms.employee_forms import EmployeeForm
 from .forms.leave_forms import LeaveRequestForm
@@ -126,3 +126,14 @@ def departments(request):
         'departments': departments_list
     }
     return render(request, 'departments.html', context)
+
+
+def leave_types(request):
+    leave_types_list = LeaveType.objects.all()
+    paginator = Paginator(leave_types_list, 10)
+    page_number = request.GET.get('page')
+    page_leave_types = paginator.get_page(page_number)
+    context = {
+        'leave_types': page_leave_types
+    }
+    return render(request, 'leave_types.html', context)
