@@ -75,7 +75,7 @@ def add_leave(request):
 
         if leave_request_form.is_valid():
             leave_request_form.save()
-            return redirect('employees')
+            return redirect('leave_requests')
         else:
             return render(request, 'add_leave.html', {
                 'leave_request_form': leave_request_form,
