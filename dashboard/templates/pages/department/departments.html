@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'pages/base.html' %}
 {% load static %}
 {% load url_extras %}
 {% block content %}
@@ -50,5 +50,5 @@
     <script src="{% static 'assets/_js/my_pages/add_department_ajax.js' %}"></script>
 {% endblock %}
 {% block sidebar_overlay %}
-	{% include 'sidebar_overlay_add_department.html' %}
+	{% include 'sidebar/sidebar_overlay_add_department.html' %}
 {% endblock %}
