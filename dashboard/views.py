@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 import json
 from dashboard.utils.auth_utils import role_required
-
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Employee, Department, Position, LeaveRequest, LeaveType
@@ -88,12 +88,17 @@ def add_leave(request):
     })
 
 
+@login_required
 def leave_requests(request):
     leave_requests_list = LeaveRequest.objects.all().select_related('employee__user')
     context = {
         'leave_requests': leave_requests_list
     }
-    return render(request, 'leave_requests.html', context)
+    if request.user.role == User.ROLE_HR_MANAGER:
+        return render(request, 'leave_requests.html', context)
+    elif request.user.role == User.ROLE_EXECUTIVE_MANAGER:
+        return render(request, 'leave_requests_admin.html', context)
+
 
 
 @csrf_exempt
@@ -137,3 +142,15 @@ def leave_types(request):
         'leave_types': page_leave_types
     }
     return render(request, 'leave_types.html', context)
+
+
+@csrf_exempt
+def add_leave_type(request):
+    if request.method == 'POST':
+        name = request.POST.get('leave_type_name')
+        description = request.POST.get('leave_type_description')
+        days_allocated = request.POST.get('leave_type_days_allocated')
+        gender = request.POST.get('leave_type_gender')
+
+        leave_type = LeaveType.objects.create(name=name, description=description, days_allocated=days_allocated, gender_restriction=gender)
+        return JsonResponse({'leave_type_id': leave_type.id, 'leave_type_name': leave_type.name})

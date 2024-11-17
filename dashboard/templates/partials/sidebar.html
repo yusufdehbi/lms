@@ -39,19 +39,19 @@
         <!-- Side Navigation -->
         <div class="content-side">
             <ul class="nav-main">
-                <li class="nav-main-item">
-                    <a class="nav-main-link {% if request.path == '/' %}active{% endif %}" href="gs_backend.html">
-                        <i class="nav-main-link-icon fa fa-rocket"></i>
-                        <span class="nav-main-link-name">Dashboard</span>
-                        <span class="nav-main-link-badge badge rounded-pill bg-primary">3</span>
-                    </a>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link {% if request.path == '/calendar/' %}active{% endif %}" href="#">
-                        <i class="nav-main-link-icon fa fa-calendar"></i>
-                        <span class="nav-main-link-name">Calendar</span>
-                    </a>
-                </li>
+{#                <li class="nav-main-item">#}
+{#                    <a class="nav-main-link {% if request.path == '/' %}active{% endif %}" href="gs_backend.html">#}
+{#                        <i class="nav-main-link-icon fa fa-rocket"></i>#}
+{#                        <span class="nav-main-link-name">Dashboard</span>#}
+{#                        <span class="nav-main-link-badge badge rounded-pill bg-primary">3</span>#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li class="nav-main-item">#}
+{#                    <a class="nav-main-link {% if request.path == '/calendar/' %}active{% endif %}" href="#">#}
+{#                        <i class="nav-main-link-icon fa fa-calendar"></i>#}
+{#                        <span class="nav-main-link-name">Calendar</span>#}
+{#                    </a>#}
+{#                </li>#}
                 <li class="nav-main-heading">Leaves</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link {% if request.path == '/leave_requests/' %}active{% endif %}" href="{% url 'leave_requests' %}">

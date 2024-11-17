@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main id="main-container">
+        <!-- Hero -->
+        <div class="bg-body-light">
+            <div class="content content-full">
+                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Leave Requests</h1>
+                    <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'leave_requests' %}">Leave Requests</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END Hero -->
+        <div class="content">
+            {% if leave_requests %}
+                <div class="row items-push">
+                {% for leave_request in leave_requests %}
+                    <div class="col-4">
+                    <div class="block block-rounded">
+                    <div class="block-header block-header-default ribbon
+                                {% if leave_request.status == leave_request.PENDING %}
+                                    ribbon-warning
+                                ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-clock me-1"></i>
+                    {% elif leave_request.status == leave_request.APPROVED %}
+                        ribbon-success
+                        ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-check-circle me-1"></i>
+                    {% elif leave_request.status == leave_request.REJECTED %}
+                        ribbon-danger
+                        ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-xmark-circle me-1"></i>
+                    {% else %}
+                        ribbon-light
+                        ">
+                        <div class="ribbon-box">
+                        <i class="fa fa-xmark me-1"></i>
+                    {% endif %}
+                    {{ leave_request.get_status_display }}
+                    </div>
+                    <div class="block-title">{{ leave_request.employee.user.get_full_name }} <span class="text-muted">| {{ leave_request.employee.employee_id }}</span></div>
+                    </div>
+                    <div class="block-content">
+                        <ul class="fa-ul list-icons">
+                            <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <div class="fw-semibold">{{ leave_request.start_date }}</div>
+                                <div class="text-muted">Start Date</div>
+                            </li>
+                            <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <div class="fw-semibold">{{ leave_request.end_date }}</div>
+                                <div class="text-muted">End Date</div>
+                            </li>
+                            <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-hourglass-half"></i>
+                                </span>
+                                <div class="fw-semibold">{{ leave_request.numbers_of_days }} Days</div>
+                                <div class="text-muted">Leave's days</div>
+                            </li>
+                            <li>
+                                <span class="fa-li text-secondary">
+                                    <i class="fa fa-door-open"></i>
+                                </span>
+                                <div class="fw-semibold">Annual Leave</div>
+                                <div class="text-muted">Leave Type</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <div class="row g-sm">
+
+                            <div class="col-6">
+                                <a class="btn w-100 btn-alt-danger">
+                                    <i class="fa fa-trash me-1 opacity-50"></i>
+                                    Reject
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a class="btn w-100 btn-alt-success">
+                                    <i class="fa fa-check me-1 opacity-50"></i>
+                                    Approve
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <div class="d-flex flex-column align-items-center mt-5 gap-3">
+                    <h1>No Leave Request Available, Add One !</h1>
+                    <i class="fa fa-search-minus" style="font-size: 8rem; opacity: 0.5"> </i>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

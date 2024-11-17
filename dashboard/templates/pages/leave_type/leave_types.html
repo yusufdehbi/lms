@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <!-- Main Container -->
     <main id="main-container">
@@ -9,9 +10,9 @@
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Leave Types</h1>
                     <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
-                       <a href="#" class="btn btn-primary">
+                       <button class="btn btn-primary" data-toggle="layout" data-action="side_overlay_open">
                                 Add Leave Types
-                            </a>
+                            </button>
                     </nav>
                 </div>
             </div>
@@ -133,4 +134,16 @@
         <!-- END Page Content -->
     </main>
     <!-- END Main Container -->
+{% endblock %}
+{% block plugins-js %}
+	<script src="{% static 'assets/js/lib/jquery.min.js' %}"></script>
+{% endblock %}
+{% block page-js %}
+	<script>
+        Dashmix.layout('side_overlay_open')
+    </script>
+    <script src="{% static 'assets/_js/my_pages/add_department_ajax.js' %}"></script>
+{% endblock %}
+{% block sidebar_overlay %}
+	{% include 'sidebar_overlay_add_leave_type.html' %}
 {% endblock %}
